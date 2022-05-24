@@ -1,4 +1,4 @@
- name: Rahul6bravo
+ name: publish
 
 on: [push]
 
