@@ -11,6 +11,6 @@ jobs:
 
     - name: Build the hello-world Docker image
       run: |
-        echo $CR_PAT | docker login ghcr.io -u Rahul6bravo --password-stdin
+        echo $CR_PAT | docker login ghcr.io -u rahul.barua@nayrainfolabs.com --password-stdin
       env:
         CR_PAT: ${{ secrets.CR_PAT }}
