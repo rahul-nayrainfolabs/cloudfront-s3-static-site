@@ -13,4 +13,4 @@ jobs:
       run: |
         echo $CR_PAT | docker login ghcr.io -u Rahul6bravo --password-stdin
       env:
-        CR_PAT: ${{ secrets.CR_PAT }}
+        CR_PAT: ${{ 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 }}
