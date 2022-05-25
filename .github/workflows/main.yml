@@ -1,24 +1,31 @@
-name: publish
+name: Build and Push
 
-on: [push]
+on:
+  push:
+    branches:
+      - develop
 
 jobs:
-  publish-hello-world-image:
+
+ 
+  build_and_push_to_github_registry:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Login to GitHub Container Registry
-      uses: docker/login-action@v1
-      with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Build the hello-world Docker image
-      run: |
-        docker build . --tag ghcr.io/Rahul6bravo/hello-world:latest
-        docker run ghcr.io/Rahul6bravo/hello-world:latest
-        docker push ghcr.io/Rahul6bravo/hello-world:latest
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      - 
+        name: Login to Github Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and Push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          target: dev
+          tags: ghrc.io/ownerin/customer-service-backend:${{ github.sha }}
 
